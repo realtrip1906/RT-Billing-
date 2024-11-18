@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title> Real Trip - Receipt Generator </title>
+        <link rel="stylesheet" href="./Billing.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- <header> -->
+            <div class="container" style="text-align: center; margin-top: 1%;">
+                <div class = "notificationBox" id = "notification">
+                    <p id = "notoficationMessage"></p>
+                    <button type="button" class="btn-close" id = "notificationClose" aria-label="Close"></button>
+                </div>
+                <h3>Real Trip - Booking Details</h3>
+                
+                <div class="row g-3">
+                    <hr>
+                    <div class="col-md-6">
+                        <form class="d-flex" role="search">
+                            <input id = "searchBooking" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" required>
+                            <button class="btn btn-primary" id = "searchButton">Search</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-warning" id = "newEntry">New Entry</button>
+                    </div>
+                </div>
+            </div>
+        <!-- </header> -->
+        <main>
+            <div class="container">
+                <div id = "bookingDetails">
+                    <form class="row g-3 needs-validation" novalidate id = "billingForm">
+                        <hr>
+                        <h5 style="text-align: center;">Guest Details</h5>
+                        <h6 style="text-align: center;" id = "bookingIdHeading"></h6>
+                        <div class="col-md-4">
+                            <label for="guestName" class="form-label" >Guest Name <span id = "requiredField">*</span></label>
+                            <input type="text" class="form-control" id="guestName"  placeholder="Guest Name" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="guestNumber" class="form-label">Guest Contact <span id = "requiredField">*</span></label>
+                            <input type="text" class="form-control" id="guestNumber" pattern="[0-9]{10}" placeholder="Guest Number" required>
+                            <div class="invalid-feedback">
+                                Please input a valid number.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="guestEmail" class="form-label">Guest Email</label>
+                            <input type="email" class="form-control" id="guestEmail" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="Guest Email">
+                        </div>
+                        <div class="col-12">
+                            <label for="tripDescription" class="form-label">Trip Description <span id = "requiredField">*</span></label>
+                            <textarea class="form-control" id="tripDescription" rows="3" placeholder="Trip Description" required></textarea>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="accommodationType" class="form-label">Accommodation Type</label>
+                            <select id="accommodationType" class="form-select" >
+                                <option selected disabled value="">Choose...</option>
+                                <option value = "Standard">Standard</option>
+                                <option value = "Deluxe">Deluxe</option>
+                                <option value = "Premium">Premium</option>
+                                <option value = "Budget">Budget</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="adultCount" class="form-label">Adults Count</label>
+                            <input type="text" class="form-control" id="adultCount" pattern="[0-9]{1,}" placeholder="Adult Count">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="childCount" class="form-label">Child Count</label>
+                            <input type="text" class="form-control" id="childCount" pattern="[0-9]{1,}" placeholder="Child Count">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="roomCount" class="form-label">Room Count</label>
+                            <input type="text" class="form-control" id="roomCount" pattern="[0-9]{1,}" placeholder="Room Count">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mealPlan" class="form-label">Meal Plan</label>
+                            <select id="mealPlan" class="form-select" >
+                                <option selected disabled value="">Choose...</option>
+                                <option value = "AP">AP</option>
+                                <option value = "MAP">MAP</option>
+                                <option value = "CP">CP</option>
+                                <option value = "EP">EP</option>
+                                <option value = "NA">NA</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cabType" class="form-label">Cab Type</label>
+                            <input type="text" class="form-control" id="cabType" placeholder="Cab Type">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="tripStartDate" class="form-label">Trip Start Date <span id = "requiredField">*</span></label>
+                            <input type="date" class="form-control" id="tripStartDate" required>
+                            <div class="invalid-feedback">
+                                Please input a valid date.
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="tripEndDate" class="form-label">Trip End Date <span id = "requiredField">*</span></label>
+                            <input type="date" class="form-control" id="tripEndDate" required>
+                            <div class="invalid-feedback">
+                                Please input a valid date.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="bookingDate" class="form-label">Booking Date</label>
+                            <input type="date" class="form-control" id="bookingDate">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="guestTotalCost" class="form-label">Total Amount <span id = "requiredField">*</span></label>
+                            <input type="text" class="form-control" id="guestTotalCost" pattern="[0-9]{1,}"  placeholder="Total Amount" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="guestAdvance" class="form-label">Advance Amount <span id = "requiredField">*</span></label>
+                            <input type="text" class="form-control" id="guestAdvance" pattern="[0-9]{1,}" placeholder="Advance Amount" required>
+                        </div>
+
+                        <h5 style="text-align: center;">Hotel Details</h5>
+
+                        <div class="col-md-4">
+                            <label for="hotelName" class="form-label">Hotel Name</label>
+                            <textarea class="form-control" id="hotelName" rows="2"></textarea>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="hotelTotalCost" class="form-label">Hotel Total Cost</label>
+                            <textarea class="form-control" id="hotelTotalCost" rows="2"></textarea>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="hotelAdvance" class="form-label">Hotel Advance</label>
+                            <textarea class="form-control" id="hotelAdvance" rows="2"></textarea>
+                        </div>
+
+                        <h5 style="text-align: center;">Cab Details</h5>
+
+                        <div class="col-md-4">
+                            <label for="cabVendor" class="form-label">Cab Vendor</label>
+                            <textarea class="form-control" id="cabVendor" rows="2"></textarea>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="cabTotalCost" class="form-label">Cab Total Cost</label>
+                            <textarea class="form-control" id="cabTotalCost" rows="2"></textarea>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="cabAdvance" class="form-label">Cab Advance</label>
+                            <textarea class="form-control" id="cabAdvance" rows="2"></textarea>
+                        </div>
+
+                        <h5 style="text-align: center;">Other Details</h5>
+
+                        <div class="col-md-6">
+                            <label for="bookinStatus" class="form-label">Booking Stage <span id = "requiredField">*</span></label>
+                            <select id="bookinStatus" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option value = "AllComplete">All bookings completed</option>
+                                <option value = "HotelsIncomplete">Hotels Booking Incomplete</option>
+                                <option value = "CabIncomplete">Cab Booking Incomplete</option>
+                                <option value = "HotelAndCabIncomplete">Hotel And Cab Booking Incomplete</option>
+                                <option value = "BookingCancelled">Booking Cancelled</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="comments" class="form-label">Comments</label>
+                            <textarea class="form-control" id="comments" rows="1"></textarea>
+                        </div>
+                        
+                        <div id="formButtons">
+                            <button type="submit" class="btn btn-success" id = "save">Save</button>
+                            <button type="submit" class="btn btn-success" id = "update">Update</button>
+                            <button type="reset" class="btn btn-warning" id = "resetButton">Reset</button>
+                            <button type="button" class="btn btn-danger" id = "close">Close</button>
+                        </div>
+                        <div id = "utilityButtons">
+                            <button type="button" class="btn btn-warning"  id = "pdfView">View PDF</button>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <div>
+                    <h5 style="text-align: center;">All Booking Details</h5>
+                    <div id = "navButtons">
+                        <button class="btn btn-primary" id = "all" disabled>All</button>
+                        <button class="btn btn-danger" id = "completed" disabled>Completed</button>
+                        <button class="btn btn-success" id = "ongoing" disabled>Ongoing</button>
+                        <button class="btn btn-info" id = "upcoming" disabled>Upcoming</button>
+                    </div>
+                    <div id = "viewAllBookingDetails">
+                        <table class="table table-success table-striped table-hover" id = "allData">
+                            <thead>
+                            <tr>
+                                <th scope="col">Booking Id</th>
+                                <th scope="col">Guest Name</th>
+                                <th scope="col">Trip Start Date</th>
+                                <th scope="col">Trip End Date</th>
+                                <th scope="col">Booking Stage</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody id = "tableBody">
+                            <!-- table rows will be generated via js in the following order -->
+                            <!-- <tr>
+                                <th scope="row"><a href="#">1</a></th>
+                                <td>Sudeep</td>
+                                <td>25th dec</td>
+                                <td>30th dec</td>
+                                <td>All bookings done</td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>  
+        </main>
+
+        <div id="pdfPreview" class="modal" style="overflow: auto;">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h6>PDF Preview <span class="close">&times;</span></h6>
+                <div>
+                    <div id = "pdfPreviewDiv">
+                        <div id = "pdfHeader">
+                            <div>
+                                <img id = "brandbg" src="./Resources/Pics/pdfHeader.PNG" alt="bg">
+                            </div>
+                        </div>
+                        <hr>
+                        <div style="text-align: center;">
+                            <h6 class = "boldHeader" id = "pdfBookingId">NA</h6>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col">Guest Name</div>
+                            <div class="col" id = "pdfGuestName">NA</div>
+                            <div class="col">Guest Number</div>
+                            <div class="col" id = "pdfGuestNumber">NA</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Number of Adults</div>
+                            <div class="col" id = "pdfAdultCount">NA</div>
+                            <div class="col">Number of Children</div>
+                            <div class="col" id = "pdfChildCount">NA</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Number of Rooms</div>
+                            <div class="col" id = "pdfRoomCount">NA</div>
+                            <div class="col">AccomodationType</div>
+                            <div class="col" id = "pdfAccommodationType">NA</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Meal Plan</div>
+                            <div class="col" id = "pdfMealPlan">NA</div>
+                            <div class="col">Cab Type</div>
+                            <div class="col" id = "pdfCabType">NA</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Tour Start Date</div>
+                            <div class="col" id = "pdfTripStartDate">NA</div>
+                            <div class="col">Tour End Date</div>
+                            <div class="col" id = "pdfTripEndDate">NA</div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col">Total Amount</div>
+                            <div class="col" id = "pdfGuestTotalCost">NA</div>
+                            <div class="col">Advance Paid</div>
+                            <div class="col" id = "pdfGuestAdvance">NA</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">Tour Details</div>
+                            <div class="col-9" id = "pdfTripDescription">NA</div>
+                        </div>
+                        <div class="row">
+                            <div class ="col-12">
+                                <p class="boldHeader">Terms and Conditions : </p>
+                                <ul class="termsConditionsList">
+                                    <li>If the cab is required to take an alternative route, apart from usual Route to reach any destination due 
+                                        to road conditions or any unforeseen reasons, then guests will have to pay additional charges to the driver.</li>
+                                    <li>There will be no reduction in cost if you skip any meal including the package.</li>
+                                    <li>There will be no reduction in cost if any sightseeing spot is closed.</li>
+                                    <li>After booking confirmation no negotiation in price will be entertained.</li>
+                                    <li>In case of any damage caused to any property due to customer, the customer shall be liable to 
+                                        compensate for the same as per the terms of the property owner. The Pine Mist in no way shall be 
+                                        involved in any such matter.</li>
+                                    <li>After the trip starts, customer should be clear the dues on daily basis by 7pm. 
+                                        All dues should be cleared by the night before checkout date.</li>
+                                    <li>We prefer online transaction only. No cash transaction allowed without any confirmation from our end.</li>
+                                </ul>
+                                <p class="boldHeader">Note : </p>
+                                <ul class="noteList">
+                                    <li>All guests should carry voter and passport size photo hard copy. For those who doesn't have voter card 
+                                        need to carry their birth certificate.</li>
+                                    <li>All hotel/homestay name, location and contact details will be shared after booking confirmation.</li>
+                                    <li>Cab and driver details will be provided one day before the trip start date.</li>
+                                    <li>After booking confirmation no negotiation in price will be entertained.</li>
+                                    <li>We advise all customers to avoid getting into any altercations with the drivers/hotel owners/locals and 
+                                        advise the customers to maintain the decorum of any place they visit to avoid any kind of unpleasant 
+                                        experience during their trip. In case of any concerns, please communicate the same to us.</li>
+                                    <li>Checkin, Checkout, Food and service timings will be as per the rules of the property you visit.</li>
+                                    <li>We prefer online transaction only. No cash transaction allowed without any confirmation from our end.</li>
+                                </ul>
+                                <p class="boldHeader">Cancellation Policy : </p>
+                                <p>In case of cancellation of the trip from our end due to any unforeseen circumstances full advance 
+                                    payment will be refunded.</p>
+                                <p>In case of cancellation from customer's end, cancellation charges will apply.</p>
+                                <p class="boldHeader">Company Details : </p>
+                                <p>Name: THE PINE MIST</p>
+                                <p>Official Address: Gitashree Apartment 
+                                    13, Incenarator Rd, Military Camp, South Dumdum 
+                                    KOLKATA, WEST BENGAL 700028 </p>
+                                <p>Current Address: Phenzo Building, Lower Toong Soong Road,
+                                    Darjeeling, West Bengal-734101</p>
+                                <p class="boldHeader">Contact :</p>
+                                <p>WhatsApp: +91 9147413941</p>
+                                <p>Phone: +91 9147413942</p>
+                                <p>Email: thepinemist@gmail.com</p>
+                                <p class="boldHeader">Facebook Link: https://www.facebook.com/profile.php?id=100093943825114&mibextid=ZbWKwL</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary" id = "closePdfViewer">Close</button>
+                        <button type="button" class="btn btn-primary" id = "generatePdf">Generate PDF</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src=
+ "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+    <script src=
+ "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+        <script src="./Billing.js"></script>
+    </body>
+
+</html>
