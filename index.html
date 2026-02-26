@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -194,6 +195,25 @@
                         <button class="btn btn-success" id = "ongoing" disabled>Ongoing</button>
                         <button class="btn btn-info" id = "upcoming" disabled>Upcoming</button>
                     </div>
+                    <div>
+                        <form class="row g-3 needs-validation" novalidate id = "dateFilter">
+                            <div class="col-md-6">
+                                <label for="startDate" class="form-label">Start Date <span id = "requiredField">*</span></label>
+                                <input type="date" class="form-control" id="startDate" disabled required>
+                                <div class="invalid-feedback">
+                                    Please input a valid date.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="endDate" class="form-label">End Date <span id = "requiredField">*</span></label>
+                                <input type="date" class="form-control" id="endDate" disabled required>
+                                <div class="invalid-feedback">
+                                    Please input a valid date.
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
                     <div id = "viewAllBookingDetails">
                         <table class="table table-success table-striped table-hover" id = "allData">
                             <thead>
@@ -202,7 +222,7 @@
                                 <th scope="col">Guest Name</th>
                                 <th scope="col">Trip Start Date</th>
                                 <th scope="col">Trip End Date</th>
-                                <th scope="col">Booking Stage</th>
+                                <th scope="col">Booking Status</th>
                                 
                             </tr>
                             </thead>
@@ -242,7 +262,7 @@
                         <div class="row">
                             <div class="col">Guest Name</div>
                             <div class="col" id = "pdfGuestName">NA</div>
-                            <div class="col">Guest Number</div>
+                            <div class="col">Guest Contact</div>
                             <div class="col" id = "pdfGuestNumber">NA</div>
                         </div>
                         <div class="row">
@@ -282,7 +302,7 @@
                         <div class="row">
                             <div class ="col-12">
                                 <p class="boldHeader">Terms and Conditions : </p>
-                                <ul class="termsConditionsList">
+                               <ul class="termsConditionsList">
                                     <li>Guests must pay extra if the cab takes an alternate route due to unforeseen reasons.</li>
                                     <li>No cost reduction for skipped meals or closed sightseeing spots.</li>
                                     <li>There will be no reduction in cost if any sightseeing spot is closed.</li>
@@ -310,18 +330,20 @@
                                 <p class="boldHeader">Cancellation Policy : </p>
                                 <p>In case of cancellation of the trip from our end due to any unforeseen circumstances full advance 
                                     payment will be refunded.</p>
-                                <p>In case of cancellation from customer's end, cancellation charges will apply.</p>
+                                <p>In case of cancellation from customer's end, cancellation charges will apply. In case of cancellation within 30 days from trip start date
+                                    100% cancellation charge will be applicable and no refund will be provided.</p>
                                 <p class="boldHeader">Company Details : </p>
-                                <p>Name: Real Trip </p>
-                                <p>Official Address: Dakshin Saligoria , Magrahat ,
-                                    South 24 PGS , West Bengal 743355 </p>
-                                <p>Current Address: Phenzo Building, Lower Toong Soong Road,
-                                    Darjeeling, West Bengal-734101</p>
+                                <p>Name: REAL TRIP</p>
+                                <p>Official Address: Dakshin Saligoria, 
+                                    Magrahat, South 24 Pgs
+                                    WEST BENGAL 743355 </p>
+                                <p>Current Address: Lakshya Homestay, Lepchajagat,
+                                    Darjeeling, West Bengal-734221</p>
                                 <p class="boldHeader">Contact :</p>
-                                <p>WhatsApp: +91 8972516305 </p>
-                                <p>Phone: +91 9749308879 </p>
-                                <p>Email: contact.realtrip@gmail.com</p>
-                                <p class="boldHeader">Facebook Link: https://www.facebook.com/profile.php?id=61556442500020</p>
+                                <p>WhatsApp: +91 8972516305</p>
+                                <p>Phone: +91 9749308879</p>
+                                <p>Email: contact.realtript@gmail.com</p>
+                                <p class="boldHeader">Facebook Link: https://www.facebook.com/profile.php?id=100093943825114&mibextid=ZbWKwL</p>
                             </div>
                         </div>
                     </div>
